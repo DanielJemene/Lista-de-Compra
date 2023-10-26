@@ -1,7 +1,7 @@
-package com.tcg.lista.application;
+package com.tcg.lista.domain.services;
 
 import com.tcg.lista.domain.categoria.Categoria;
-import com.tcg.lista.domain.categoria.CategoriaRepository;
+import com.tcg.lista.infraestructure.mysql.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
