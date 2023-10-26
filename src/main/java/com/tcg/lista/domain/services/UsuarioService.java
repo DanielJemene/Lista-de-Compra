@@ -1,12 +1,11 @@
-package com.tcg.lista.application;
+package com.tcg.lista.domain.services;
 
 import com.tcg.lista.domain.usuario.Usuario;
-import com.tcg.lista.domain.usuario.UsuarioRepository;
+import com.tcg.lista.infraestructure.mysql.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class UsuarioService {

@@ -1,12 +1,11 @@
-package com.tcg.lista.application;
+package com.tcg.lista.domain.services;
 
 import com.tcg.lista.domain.usuario.Amizade;
-import com.tcg.lista.domain.usuario.AmizadeRepository;
+import com.tcg.lista.infraestructure.mysql.repository.AmizadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class AmizadeService {

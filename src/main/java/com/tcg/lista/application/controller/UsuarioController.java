@@ -1,13 +1,12 @@
-package com.tcg.lista.web;
+package com.tcg.lista.application.controller;
 
-import com.tcg.lista.application.UsuarioService;
+import com.tcg.lista.domain.services.UsuarioService;
 import com.tcg.lista.domain.usuario.Usuario;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/usuarios")

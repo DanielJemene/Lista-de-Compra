@@ -1,13 +1,12 @@
-package com.tcg.lista.web;
+package com.tcg.lista.application.controller;
 
-import com.tcg.lista.application.NotificacaoService;
+import com.tcg.lista.domain.services.NotificacaoService;
 import com.tcg.lista.domain.notificacao.Notificacao;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/notificacoes")

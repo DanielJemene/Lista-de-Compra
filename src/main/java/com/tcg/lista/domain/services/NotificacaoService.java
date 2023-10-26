@@ -1,12 +1,11 @@
-package com.tcg.lista.application;
+package com.tcg.lista.domain.services;
 
 import com.tcg.lista.domain.notificacao.Notificacao;
-import com.tcg.lista.domain.notificacao.NotificacaoRepository;
+import com.tcg.lista.infraestructure.mysql.repository.NotificacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class NotificacaoService {
