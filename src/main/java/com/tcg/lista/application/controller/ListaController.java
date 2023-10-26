@@ -1,7 +1,7 @@
-package com.tcg.lista.web;
+package com.tcg.lista.application.controller;
 
-import com.tcg.lista.application.ListaService;
-import com.tcg.lista.application.ProdutoService;
+import com.tcg.lista.domain.services.ListaService;
+import com.tcg.lista.domain.services.ProdutoService;
 import com.tcg.lista.domain.lista.Lista;
 import com.tcg.lista.domain.produto.Produto;
 import jakarta.transaction.Transactional;
