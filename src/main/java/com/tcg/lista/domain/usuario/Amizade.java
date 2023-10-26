@@ -11,15 +11,16 @@ import java.util.UUID;
 @Entity(name = "amizade")
 public class Amizade {
 
-    @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    private UUID amizade_id;
 
-    @OneToOne
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long amizade_id;
+
+    @ManyToOne()
+    @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
+    private Usuario usuario;
+
+    @ManyToOne
     @JoinColumn(name = "amigo_id", referencedColumnName = "usuario_id")
     private Usuario amigo;
 

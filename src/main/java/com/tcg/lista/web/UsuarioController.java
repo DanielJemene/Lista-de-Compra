@@ -22,7 +22,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public Usuario getUsuario(@PathVariable UUID id) {
+    public Usuario getUsuario(@PathVariable Long id) {
         return usuarioService.getUsuario(id);
     }
 
@@ -34,7 +34,7 @@ public class UsuarioController {
 
     @Transactional
     @DeleteMapping("/{id}")
-    public void deletarUsuario(@PathVariable UUID id) {  usuarioService.deletarUsuario(id); }
+    public void deletarUsuario(@PathVariable Long id) {  usuarioService.deletarUsuario(id); }
 
 }
 

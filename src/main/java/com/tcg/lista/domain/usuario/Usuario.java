@@ -1,5 +1,7 @@
 package com.tcg.lista.domain.usuario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -30,6 +32,7 @@ public class Usuario {
 
     @OneToMany
     @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
+    @JsonIgnoreProperties({"usuario"})
     private List<Amizade> amigos;
 
 }

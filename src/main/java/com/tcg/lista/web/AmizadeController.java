@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/amizades")
+@RequestMapping("/amizade")
 public class AmizadeController {
 
     @Autowired
@@ -22,7 +22,7 @@ public class AmizadeController {
     }
 
     @GetMapping("/{id}")
-    public Amizade getAmizade(@PathVariable UUID id) {
+    public Amizade getAmizade(@PathVariable Long id) {
         return amizadeService.getAmizade(id);
     }
 
@@ -34,7 +34,7 @@ public class AmizadeController {
 
     @Transactional
     @DeleteMapping("/{id}")
-    public void deletarAmizade(@PathVariable UUID id) {  amizadeService.deletarAmizade(id);
+    public void deletarAmizade(@PathVariable Long id) {  amizadeService.deletarAmizade(id);
     }
     
 }
