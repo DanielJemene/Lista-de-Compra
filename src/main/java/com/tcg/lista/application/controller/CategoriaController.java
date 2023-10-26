@@ -1,6 +1,5 @@
-package com.tcg.lista.web;
+package com.tcg.lista.application.controller;
 
-import com.tcg.lista.application.CategoriaService;
 import com.tcg.lista.domain.categoria.Categoria;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
