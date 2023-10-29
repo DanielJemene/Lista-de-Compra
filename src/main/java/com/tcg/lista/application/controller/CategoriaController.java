@@ -1,6 +1,8 @@
 package com.tcg.lista.application.controller;
 
+import com.tcg.lista.application.dto.CategoriaDTO;
 import com.tcg.lista.domain.categoria.Categoria;
+import com.tcg.lista.domain.services.CategoriaService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,32 +10,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/categoria")
+@RequestMapping("/categorias")
 public class CategoriaController {
 
     @Autowired
     private CategoriaService categoriaService;
 
     @GetMapping
-    public List<Categoria> getAllListas() {
+    public List<CategoriaDTO> getAllListas() {
         return categoriaService.getAllCategorias();
     }
 
     @GetMapping("/{id}")
-    public Categoria getCategoriaById(@PathVariable Long id) {
+    public CategoriaDTO getCategoriaById(@PathVariable Long id) {
         return categoriaService.getCategoriaById(id);
     }
 
     @Transactional
     @PostMapping
-    public Categoria createCategoria(@RequestBody Categoria categoria) {
-        return categoriaService.createCategoria(categoria);
+    public CategoriaDTO createCategoria(@RequestBody CategoriaDTO categoriaDTO) {
+        return categoriaService.createCategoria(categoriaDTO);
     }
 
     @Transactional
     @PutMapping("/{id}")
-    public Categoria updateProduto(@PathVariable Long id, @RequestBody Categoria categoria) {
-        return categoriaService.updateCategoria(id, categoria);
+    public CategoriaDTO updateProduto(@PathVariable Long id, @RequestBody CategoriaDTO categoriaDTO) {
+        return categoriaService.updateCategoria(id, categoriaDTO);
     }
 
     @Transactional

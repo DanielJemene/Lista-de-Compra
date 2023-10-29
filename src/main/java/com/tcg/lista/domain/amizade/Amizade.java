@@ -1,5 +1,6 @@
-package com.tcg.lista.domain.usuario;
+package com.tcg.lista.domain.amizade;
 
+import com.tcg.lista.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
@@ -14,7 +15,8 @@ public class Amizade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long amizade_id;
+    @Column(name = "amizade_id")
+    private Long id;
 
     @ManyToOne()
     @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
@@ -25,12 +27,12 @@ public class Amizade {
     private Usuario amigo;
 
     @Column
-    private LocalDate data_inicio;
+    private LocalDate dataInicio;
 
     @Column
-    private LocalDate data_fim;
+    private LocalDate dataFim;
 
     @Column
-    private Boolean status;
+    private int status;
 
 }

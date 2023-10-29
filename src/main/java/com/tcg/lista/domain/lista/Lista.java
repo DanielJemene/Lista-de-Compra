@@ -1,6 +1,7 @@
 package com.tcg.lista.domain.lista;
 
-import com.tcg.lista.domain.produto.Produto;
+import com.tcg.lista.domain.item.Item;
+import com.tcg.lista.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,8 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -20,27 +21,45 @@ import java.util.List;
 public class Lista {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "lista_id")
     private Long id;
 
-    private Date dataDeCriacao;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
+    private Usuario usuario;
+
     private String nome;
+
+    private LocalDateTime dataCriacao;
+
+    private LocalDateTime dataValidade;
+
+    private LocalDateTime dataConclusao;
+
     private boolean isConcluida;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Produto> produtos = new ArrayList<>();
+    @JoinColumn(name = "lista_id")
+    private List<Item> itens = new ArrayList<>();
+
+    public Lista(Long id){
+        this.id = id;
+    }
 
     public BigDecimal getPrecoTotal() {
-        Produto produto = new Produto();
-        return produtos.stream()
-                .map(Produto::getPreco)
+        return itens.stream()
+                .map(Item::getPreco)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
+    public List<Item> getItens() {
+        if (itens == null) {
+            itens = new ArrayList<>();
+        }
+        return itens;
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    public void setItens(List<Item> itens) {
+        this.itens = itens;
     }
 }

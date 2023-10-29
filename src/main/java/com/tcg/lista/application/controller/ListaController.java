@@ -1,9 +1,8 @@
 package com.tcg.lista.application.controller;
 
+import com.tcg.lista.application.dto.ItemDTO;
+import com.tcg.lista.application.dto.ListaDTO;
 import com.tcg.lista.domain.services.ListaService;
-import com.tcg.lista.domain.services.ProdutoService;
-import com.tcg.lista.domain.lista.Lista;
-import com.tcg.lista.domain.produto.Produto;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,46 +16,44 @@ public class ListaController {
     @Autowired
     private ListaService listaService;
 
-    @Autowired
-    private ProdutoService produtoService;
-
-    @GetMapping
-    public List<Lista> getAllListas() {
-        return listaService.getAllListas();
+    @GetMapping("/byuser/{id}")
+    public List<ListaDTO> getAllListasByUser(@PathVariable Long id) {
+        return listaService.getAllListasByUser(id);
     }
 
     @GetMapping("/{id}")
-    public Lista getLista(@PathVariable Long id) {
+    public ListaDTO getLista(@PathVariable Long id) {
         return listaService.getListaById(id);
     }
 
     @Transactional
     @PostMapping
-    public Lista createLista(@RequestBody Lista lista) {
-        return listaService.createLista(lista);
+    public ListaDTO createLista(@RequestBody ListaDTO listaDTO) {
+        return listaService.createLista(listaDTO);
     }
 
     @Transactional
     @PutMapping("/{id}")
-    public Lista updateLista(@PathVariable Long id, @RequestBody Lista lista) {
-        return listaService.updateLista(id, lista);
-    }
-
-    @Transactional
-    @PostMapping("/adicionarProduto")
-    public Lista adicionarProduto(@RequestParam(name = "nomeLista") String nomeLista,
-                                  @RequestParam(name = "nomeProduto") String nomeProduto){
-        Lista lista = listaService.getListaByNome(nomeLista);
-        Produto produto = produtoService.getByNome(nomeProduto);
-
-        lista.getProdutos().add(produto);
-        return lista;
+    public ListaDTO updateLista(@PathVariable Long id, @RequestBody ListaDTO listaDTO) {
+        return listaService.updateLista(id, listaDTO);
     }
 
     @Transactional
     @DeleteMapping("/{id}")
     public void deleteLista(@PathVariable Long id) {
         listaService.deleteLista(id);
+    }
+
+    @Transactional
+    @PostMapping("/{id}/item")
+    public ItemDTO addItem(@PathVariable Long id, @RequestBody ItemDTO itemDTO) {
+        return listaService.addItem(id, itemDTO);
+    }
+
+    @Transactional
+    @PutMapping("/item/{id}")
+    public ItemDTO updateItem(@PathVariable Long id, @RequestBody ItemDTO itemDTO) {
+        return listaService.updateItem(id, itemDTO);
     }
 }
 

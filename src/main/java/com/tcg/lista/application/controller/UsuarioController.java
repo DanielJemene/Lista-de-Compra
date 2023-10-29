@@ -1,5 +1,7 @@
 package com.tcg.lista.application.controller;
 
+import com.tcg.lista.application.dto.UsuarioReadDTO;
+import com.tcg.lista.application.dto.UsuarioSaveDTO;
 import com.tcg.lista.domain.services.UsuarioService;
 import com.tcg.lista.domain.usuario.Usuario;
 import jakarta.transaction.Transactional;
@@ -16,19 +18,24 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping
-    public List<Usuario> getAllUsuarios() {
+    public List<UsuarioReadDTO> getAllUsuarios() {
         return usuarioService.getAllUsuarios();
     }
 
     @GetMapping("/{id}")
-    public Usuario getUsuario(@PathVariable Long id) {
+    public UsuarioReadDTO getUsuario(@PathVariable Long id) {
         return usuarioService.getUsuario(id);
     }
 
     @Transactional
     @PostMapping
-    public Usuario createUsuario(@RequestBody Usuario usuario) {
-        return usuarioService.createUsuario(usuario);
+    public UsuarioReadDTO createUsuario(@RequestBody UsuarioSaveDTO usuarioDTO) {
+        return usuarioService.createUsuario(usuarioDTO);
+    }
+
+    @PutMapping("/{id}")
+    public UsuarioReadDTO updateUsuario(@PathVariable Long id, @RequestBody UsuarioSaveDTO usuarioDTO) {
+        return usuarioService.update(id, usuarioDTO);
     }
 
     @Transactional

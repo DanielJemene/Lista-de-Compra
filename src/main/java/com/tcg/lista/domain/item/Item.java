@@ -1,5 +1,6 @@
-package com.tcg.lista.domain.categoria;
+package com.tcg.lista.domain.item;
 
+import com.tcg.lista.domain.lista.Lista;
 import com.tcg.lista.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,26 +9,36 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
 @AllArgsConstructor
 @Getter
 @Setter
 @NoArgsConstructor
-public class Categoria {
+public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "categoria_id")
+    @Column(name = "item_id")
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
     private Usuario usuario;
 
+    @ManyToOne
+    @JoinColumn(name = "lista_id", referencedColumnName = "lista_id")
+    private Lista lista;
+
     private String nome;
 
-    private int status;
+    private int quantidade;
+
+    private BigDecimal preco;
+
+    private String descricao;
+
+    private boolean isConcluido;
+
+    private LocalDateTime dataConclusao;
 }
