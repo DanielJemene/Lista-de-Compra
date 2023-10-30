@@ -1,9 +1,10 @@
 package com.tcg.lista.domain.services;
 
 import com.tcg.lista.application.dto.CategoriaDTO;
-import com.tcg.lista.domain.categoria.Categoria;
-import com.tcg.lista.domain.categoria.CategoriaStatus;
-import com.tcg.lista.domain.usuario.Usuario;
+import com.tcg.lista.application.exception.EntityNotFoundException;
+import com.tcg.lista.domain.enitty.categoria.Categoria;
+import com.tcg.lista.domain.enitty.categoria.CategoriaStatus;
+import com.tcg.lista.domain.enitty.usuario.Usuario;
 import com.tcg.lista.infraestructure.mysql.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class CategoriaService {
     }
 
     public CategoriaDTO getCategoriaById(Long id) {
-        return toDTO(categoriaRepository.findById(id).orElse(null));
+        return toDTO(categoriaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Categoria")));
     }
 
     public CategoriaDTO createCategoria(CategoriaDTO categoriaDTO) {

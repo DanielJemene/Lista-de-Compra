@@ -45,15 +45,30 @@ public class ListaController {
     }
 
     @Transactional
-    @PostMapping("/{id}/item")
+    @PostMapping("/{id}/itens")
     public ItemDTO addItem(@PathVariable Long id, @RequestBody ItemDTO itemDTO) {
         return listaService.addItem(id, itemDTO);
     }
 
     @Transactional
-    @PutMapping("/item/{id}")
+    @PutMapping("/itens/{id}")
     public ItemDTO updateItem(@PathVariable Long id, @RequestBody ItemDTO itemDTO) {
         return listaService.updateItem(id, itemDTO);
+    }
+
+    @GetMapping("/itens/{id}")
+    public ItemDTO getItem(@PathVariable Long id) {
+        return listaService.getItemById(id);
+    }
+
+    @GetMapping("/{id}/itens")
+    public List<ItemDTO> getAllItensByLista(@PathVariable Long id) {
+        return listaService.getItemByListaId(id);
+    }
+
+    @DeleteMapping("/itens/{id}")
+    public void deleteItem(@PathVariable Long id) {
+        listaService.deleteItem(id);
     }
 }
 

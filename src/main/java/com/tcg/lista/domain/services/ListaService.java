@@ -2,17 +2,15 @@ package com.tcg.lista.domain.services;
 
 import com.tcg.lista.application.dto.ItemDTO;
 import com.tcg.lista.application.dto.ListaDTO;
-import com.tcg.lista.domain.item.Item;
-import com.tcg.lista.domain.lista.Lista;
-import com.tcg.lista.domain.usuario.Usuario;
+import com.tcg.lista.application.exception.EntityNotFoundException;
+import com.tcg.lista.domain.enitty.lista.Lista;
+import com.tcg.lista.domain.enitty.usuario.Usuario;
 import com.tcg.lista.infraestructure.mysql.repository.ListaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,6 +22,9 @@ public class ListaService {
     @Autowired
     private ItemService itemService;
 
+    @Autowired
+    private AutorService autorService;
+
     public List<ListaDTO> getAllListasByUser(Long id) {
         return listaRepository.findListaByUsuarioId(id)
                 .orElseThrow(()-> new RuntimeException("Usuário não possui Listas."))
@@ -31,7 +32,7 @@ public class ListaService {
     }
 
     public ListaDTO getListaById(Long id) {
-        return toDTO(listaRepository.findById(id).orElseThrow(()-> new RuntimeException("Lista não encontrada.")));
+        return toDTO(listaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Lista")));
     }
 
     public ListaDTO createLista(ListaDTO listaDTO) {
@@ -71,10 +72,21 @@ public class ListaService {
 
     }
 
-    public ItemDTO updateItem(Long itemId, ItemDTO itemDTO) {
-        return itemService.updateItem(itemId, itemDTO);
+    public ItemDTO updateItem(Long id, ItemDTO itemDTO) {
+        return itemService.updateItem(id, itemDTO);
     }
 
+    public ItemDTO getItemById(Long id) {
+        return itemService.getItemById(id);
+    }
+
+    public List<ItemDTO> getItemByListaId(Long id) {
+        return itemService.getItemByListaId(id);
+    }
+
+    public void deleteItem(Long id) {
+        itemService.deleteItem(id);
+    }
     private Lista toEntity(ListaDTO listaDTO){
 
 
@@ -86,6 +98,7 @@ public class ListaService {
                 listaDTO.dataValidade(),
                 listaDTO.dataConclusao(),
                 listaDTO.isConcluida(),
+                null,
                 null);
 
         if (listaDTO.itens() != null) {
@@ -100,11 +113,13 @@ public class ListaService {
                lista.getId(),
                lista.getUsuario().getId(),
                lista.getNome(),
+               lista.getPrecoTotal(),
                lista.getDataCriacao(),
                lista.getDataValidade(),
                lista.getDataConclusao(),
                lista.isConcluida(),
-               lista.getItens().stream().map(itemService::toDTO).collect(Collectors.toList())
+               lista.getItens().stream().map(itemService::toDTO).collect(Collectors.toList()),
+               lista.getAutores().stream().map(autorService::toDTO).collect(Collectors.toList())
        );
     }
 }

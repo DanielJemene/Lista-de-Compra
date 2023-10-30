@@ -1,7 +1,6 @@
 package com.tcg.lista.application.dto;
 
-import com.tcg.lista.domain.amizade.Amizade;
-import com.tcg.lista.domain.usuario.UsuarioStatus;
+import com.tcg.lista.domain.enitty.usuario.UsuarioStatus;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.tcg.lista.application.dto;
 
-import com.tcg.lista.domain.amizade.AmizadeStatus;
+import com.tcg.lista.domain.enitty.amizade.AmizadeStatus;
 
 public record AmizadeSaveDTO (
         Long usuarioId,

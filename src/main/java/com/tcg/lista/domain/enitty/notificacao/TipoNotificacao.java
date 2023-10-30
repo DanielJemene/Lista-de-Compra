@@ -1,11 +1,11 @@
-package com.tcg.lista.domain.usuario;
+package com.tcg.lista.domain.enitty.notificacao;
 
-public enum UsuarioStatus {
-    INATIVO(0), ATIVO(1);
+public enum TipoNotificacao {
+    SOLICITACAO_AMIZADE(0), SOLICITACAO_PART_LISTA(1);
 
     private int value;
 
-    UsuarioStatus(int value){
+    TipoNotificacao(int value){
         this.value = value;
     }
 
@@ -13,8 +13,8 @@ public enum UsuarioStatus {
         return this.value;
     }
 
-    public static UsuarioStatus fromValue(int value){
-        for (UsuarioStatus status : UsuarioStatus.values()) {
+    public static TipoNotificacao fromValue(int value){
+        for (TipoNotificacao status : TipoNotificacao.values()) {
             if (status.getValue() == value) {
                 return status;
             }

@@ -1,6 +1,6 @@
 package com.tcg.lista.infraestructure.mysql.repository;
 
-import com.tcg.lista.domain.lista.Lista;
+import com.tcg.lista.domain.enitty.lista.Lista;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 

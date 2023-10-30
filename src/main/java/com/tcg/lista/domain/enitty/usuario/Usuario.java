@@ -1,7 +1,7 @@
-package com.tcg.lista.domain.usuario;
+package com.tcg.lista.domain.enitty.usuario;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.tcg.lista.domain.amizade.Amizade;
+import com.tcg.lista.domain.enitty.amizade.Amizade;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

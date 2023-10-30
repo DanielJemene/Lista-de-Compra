@@ -1,4 +1,4 @@
-package com.tcg.lista.domain.categoria;
+package com.tcg.lista.domain.enitty.categoria;
 
 public enum CategoriaStatus {
     INATIVO(0), ATIVO(1);

@@ -1,13 +1,13 @@
 package com.tcg.lista.infraestructure.mysql.repository;
 
-import com.tcg.lista.domain.enitty.amizade.Amizade;
+import com.tcg.lista.domain.enitty.autor.Autor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface AmizadeRepository extends JpaRepository<Amizade, Long> {
+public interface AutorRepository extends JpaRepository<Autor, Long> {
 
-    Optional<List<Amizade>> findAmizadeByUsuarioId(@Param("usuario_id") Long usuarioId);
+    Optional<List<Autor>> findAutorByListaId(@Param("lista_id") Long id);
 }

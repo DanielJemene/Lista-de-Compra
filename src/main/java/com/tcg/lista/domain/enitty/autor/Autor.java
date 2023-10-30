@@ -1,25 +1,23 @@
-package com.tcg.lista.domain.item;
+package com.tcg.lista.domain.enitty.autor;
 
-import com.tcg.lista.domain.lista.Lista;
-import com.tcg.lista.domain.usuario.Usuario;
+import com.tcg.lista.domain.enitty.lista.Lista;
+import com.tcg.lista.domain.enitty.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-public class Item {
+public class Autor {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "item_id")
+    @Column(name = "autor_id")
     private Long id;
 
     @ManyToOne
@@ -30,15 +28,9 @@ public class Item {
     @JoinColumn(name = "lista_id", referencedColumnName = "lista_id")
     private Lista lista;
 
-    private String nome;
+    private int status;
 
-    private int quantidade;
-
-    private BigDecimal preco;
-
-    private String descricao;
-
-    private boolean isConcluido;
-
-    private LocalDateTime dataConclusao;
+    public Autor(Long id){
+        this.id = id;
+    }
 }

@@ -3,7 +3,6 @@ package com.tcg.lista.application.controller;
 import com.tcg.lista.application.dto.UsuarioReadDTO;
 import com.tcg.lista.application.dto.UsuarioSaveDTO;
 import com.tcg.lista.domain.services.UsuarioService;
-import com.tcg.lista.domain.usuario.Usuario;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

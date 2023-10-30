@@ -3,7 +3,6 @@ package com.tcg.lista.application.controller;
 import com.tcg.lista.application.dto.AmizadeReadDTO;
 import com.tcg.lista.application.dto.AmizadeSaveDTO;
 import com.tcg.lista.domain.services.AmizadeService;
-import com.tcg.lista.domain.amizade.Amizade;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

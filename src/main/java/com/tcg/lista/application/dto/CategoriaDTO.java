@@ -1,6 +1,6 @@
 package com.tcg.lista.application.dto;
 
-import com.tcg.lista.domain.categoria.CategoriaStatus;
+import com.tcg.lista.domain.enitty.categoria.CategoriaStatus;
 
 public record CategoriaDTO(
         Long id,

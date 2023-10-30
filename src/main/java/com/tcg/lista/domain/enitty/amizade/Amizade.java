@@ -1,12 +1,10 @@
-package com.tcg.lista.domain.amizade;
+package com.tcg.lista.domain.enitty.amizade;
 
-import com.tcg.lista.domain.usuario.Usuario;
+import com.tcg.lista.domain.enitty.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Data
 @Entity(name = "amizade")

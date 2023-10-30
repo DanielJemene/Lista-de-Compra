@@ -7,6 +7,7 @@ public record ItemDTO(
         Long id,
         Long usuarioId,
         Long listaId,
+        Long categoriaId,
         String nome,
         int quantidade,
         BigDecimal preco,

@@ -1,7 +1,7 @@
 package com.tcg.lista.application.controller;
 
+import com.tcg.lista.application.dto.NotificacaoDTO;
 import com.tcg.lista.domain.services.NotificacaoService;
-import com.tcg.lista.domain.notificacao.Notificacao;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,20 +15,26 @@ public class NotificacaoController {
     @Autowired
     private NotificacaoService notificacaoService;
 
-    @GetMapping
-    public List<Notificacao> getAllNotificacoes() {
-        return notificacaoService.getAllNotificacoes();
+    @GetMapping("/byuser/{id}")
+    public List<NotificacaoDTO> getAllNotificacoes(@PathVariable Long id) {
+        return notificacaoService.getAllNotificacoesByDestinatarioId(id);
     }
 
     @GetMapping("/{id}")
-    public Notificacao getNotificacao(@PathVariable Long id) {
+    public NotificacaoDTO getNotificacao(@PathVariable Long id) {
         return notificacaoService.getNotificacao(id);
     }
 
     @Transactional
     @PostMapping
-    public Notificacao createNotificacao(@RequestBody Notificacao notificacao) {
-        return notificacaoService.createNotificacao(notificacao);
+    public NotificacaoDTO createNotificacao(@RequestBody NotificacaoDTO notificacaoDTO) {
+        return notificacaoService.createNotificacao(notificacaoDTO);
+    }
+
+    @Transactional
+    @PutMapping("/{id}")
+    public NotificacaoDTO updateNotificacao(@PathVariable Long id, @RequestBody NotificacaoDTO notificacaoDTO) {
+        return notificacaoService.updateNotificacao(id, notificacaoDTO);
     }
 
     @Transactional

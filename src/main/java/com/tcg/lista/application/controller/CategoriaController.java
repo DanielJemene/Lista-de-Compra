@@ -1,7 +1,6 @@
 package com.tcg.lista.application.controller;
 
 import com.tcg.lista.application.dto.CategoriaDTO;
-import com.tcg.lista.domain.categoria.Categoria;
 import com.tcg.lista.domain.services.CategoriaService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,13 +2,13 @@ package com.tcg.lista.domain.services;
 
 import com.tcg.lista.application.dto.UsuarioReadDTO;
 import com.tcg.lista.application.dto.UsuarioSaveDTO;
-import com.tcg.lista.domain.usuario.Usuario;
-import com.tcg.lista.domain.usuario.UsuarioStatus;
+import com.tcg.lista.application.exception.EntityNotFoundException;
+import com.tcg.lista.domain.enitty.usuario.Usuario;
+import com.tcg.lista.domain.enitty.usuario.UsuarioStatus;
 import com.tcg.lista.infraestructure.mysql.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +26,7 @@ public class UsuarioService {
     }
 
     public UsuarioReadDTO getUsuario(Long id) {
-        return toDTO(usuarioRepository.findById(id).orElse(null));
+        return toDTO(usuarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuário")));
     }
 
     public UsuarioReadDTO createUsuario(UsuarioSaveDTO usuarioDTO) {

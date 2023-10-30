@@ -1,37 +1,32 @@
-package com.tcg.lista.domain.notificacao;
+package com.tcg.lista.domain.enitty.categoria;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.tcg.lista.domain.usuario.Usuario;
+import com.tcg.lista.domain.enitty.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Entity
 @AllArgsConstructor
 @Getter
 @Setter
 @NoArgsConstructor
-public class Notificacao {
-
+public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long notificacao_id;
+    @Column(name = "categoria_id")
+    private Long id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
-    @JsonIgnoreProperties({"amigos"})
     private Usuario usuario;
 
-    @Column
-    private String mensagem;
+    private String nome;
 
-    @Column
-    private Boolean status;
+    private int status;
 
-
-
+    public Categoria(Long id){
+        this.id = id;
+    }
 }

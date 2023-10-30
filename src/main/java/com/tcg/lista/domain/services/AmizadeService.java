@@ -2,12 +2,12 @@ package com.tcg.lista.domain.services;
 
 import com.tcg.lista.application.dto.AmizadeReadDTO;
 import com.tcg.lista.application.dto.AmizadeSaveDTO;
-import com.tcg.lista.domain.amizade.Amizade;
-import com.tcg.lista.domain.amizade.AmizadeStatus;
-import com.tcg.lista.domain.usuario.Usuario;
+import com.tcg.lista.application.exception.EntityNotFoundException;
+import com.tcg.lista.domain.enitty.amizade.Amizade;
+import com.tcg.lista.domain.enitty.amizade.AmizadeStatus;
+import com.tcg.lista.domain.enitty.usuario.Usuario;
 import com.tcg.lista.infraestructure.mysql.repository.AmizadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -25,7 +25,7 @@ public class AmizadeService {
     }
 
     public AmizadeReadDTO getAmizade(Long id) {
-        return toDTO(amizadeRepository.findById(id).orElse(null));
+        return toDTO(amizadeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Amizade")));
     }
 
     public AmizadeReadDTO createAmizade(AmizadeSaveDTO amizadeDTO) {

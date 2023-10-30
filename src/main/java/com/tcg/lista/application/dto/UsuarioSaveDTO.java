@@ -1,6 +1,6 @@
 package com.tcg.lista.application.dto;
 
-import com.tcg.lista.domain.usuario.UsuarioStatus;
+import com.tcg.lista.domain.enitty.usuario.UsuarioStatus;
 
 public record UsuarioSaveDTO(
         String nome,

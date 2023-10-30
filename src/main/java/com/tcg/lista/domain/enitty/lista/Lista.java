@@ -1,7 +1,8 @@
-package com.tcg.lista.domain.lista;
+package com.tcg.lista.domain.enitty.lista;
 
-import com.tcg.lista.domain.item.Item;
-import com.tcg.lista.domain.usuario.Usuario;
+import com.tcg.lista.domain.enitty.autor.Autor;
+import com.tcg.lista.domain.enitty.item.Item;
+import com.tcg.lista.domain.enitty.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,16 +39,20 @@ public class Lista {
 
     private boolean isConcluida;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany
     @JoinColumn(name = "lista_id")
     private List<Item> itens = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn(name = "lista_id")
+    private List<Autor> autores = new ArrayList<>();
 
     public Lista(Long id){
         this.id = id;
     }
 
     public BigDecimal getPrecoTotal() {
-        return itens.stream()
+        return getItens().stream()
                 .map(Item::getPreco)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
@@ -61,5 +66,12 @@ public class Lista {
 
     public void setItens(List<Item> itens) {
         this.itens = itens;
+    }
+
+    public List<Autor> getAutores(){
+        if (autores == null) {
+            autores = new ArrayList<>();
+        }
+        return  autores;
     }
 }
