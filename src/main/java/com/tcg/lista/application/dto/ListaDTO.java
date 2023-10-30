@@ -1,7 +1,5 @@
 package com.tcg.lista.application.dto;
 
-import com.tcg.lista.domain.enitty.autor.Autor;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;

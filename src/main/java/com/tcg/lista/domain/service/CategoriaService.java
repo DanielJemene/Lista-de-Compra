@@ -1,12 +1,10 @@
-package com.tcg.lista.domain.services;
+package com.tcg.lista.domain.service;
 
 import com.tcg.lista.application.dto.CategoriaDTO;
 import com.tcg.lista.application.exception.EntityNotFoundException;
-import com.tcg.lista.domain.enitty.categoria.Categoria;
-import com.tcg.lista.domain.enitty.categoria.CategoriaStatus;
-import com.tcg.lista.domain.enitty.usuario.Usuario;
+import com.tcg.lista.domain.entity.categoria.Categoria;
+import com.tcg.lista.domain.entity.categoria.CategoriaStatus;
 import com.tcg.lista.infraestructure.mysql.repository.CategoriaRepository;
-import com.tcg.lista.infraestructure.mysql.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

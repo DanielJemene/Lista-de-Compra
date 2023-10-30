@@ -1,6 +1,6 @@
-package com.tcg.lista.domain.enitty.notificacao;
+package com.tcg.lista.domain.entity.notificacao;
 
-import com.tcg.lista.domain.enitty.usuario.Usuario;
+import com.tcg.lista.domain.entity.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

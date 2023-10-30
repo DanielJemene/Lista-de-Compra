@@ -1,6 +1,6 @@
 package com.tcg.lista.application.dto;
 
-import com.tcg.lista.domain.enitty.usuario.UsuarioStatus;
+import com.tcg.lista.domain.entity.usuario.UsuarioStatus;
 
 import java.time.LocalDate;
 import java.util.List;

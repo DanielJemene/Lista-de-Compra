@@ -1,11 +1,11 @@
-package com.tcg.lista.domain.enitty.usuario;
+package com.tcg.lista.domain.entity.notificacao;
 
-public enum UsuarioStatus {
-    INATIVO(0), ATIVO(1);
+public enum NotificacaoStatus {
+    NAO_LIDA(0), LIDA(1);
 
     private int value;
 
-    UsuarioStatus(int value){
+    NotificacaoStatus(int value){
         this.value = value;
     }
 
@@ -13,8 +13,8 @@ public enum UsuarioStatus {
         return this.value;
     }
 
-    public static UsuarioStatus fromValue(int value){
-        for (UsuarioStatus status : UsuarioStatus.values()) {
+    public static NotificacaoStatus fromValue(int value){
+        for (NotificacaoStatus status : NotificacaoStatus.values()) {
             if (status.getValue() == value) {
                 return status;
             }

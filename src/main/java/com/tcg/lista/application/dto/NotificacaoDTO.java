@@ -1,7 +1,7 @@
 package com.tcg.lista.application.dto;
 
-import com.tcg.lista.domain.enitty.notificacao.NotificacaoStatus;
-import com.tcg.lista.domain.enitty.notificacao.TipoNotificacao;
+import com.tcg.lista.domain.entity.notificacao.NotificacaoStatus;
+import com.tcg.lista.domain.entity.notificacao.TipoNotificacao;
 
 public record NotificacaoDTO(
         Long id,

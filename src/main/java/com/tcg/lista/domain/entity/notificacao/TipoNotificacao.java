@@ -1,4 +1,4 @@
-package com.tcg.lista.domain.enitty.notificacao;
+package com.tcg.lista.domain.entity.notificacao;
 
 public enum TipoNotificacao {
     SOLICITACAO_AMIZADE(0), SOLICITACAO_PART_LISTA(1);

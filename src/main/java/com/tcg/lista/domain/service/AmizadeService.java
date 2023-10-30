@@ -1,12 +1,10 @@
-package com.tcg.lista.domain.services;
+package com.tcg.lista.domain.service;
 
 import com.tcg.lista.application.dto.AmizadeReadDTO;
 import com.tcg.lista.application.dto.AmizadeSaveDTO;
-import com.tcg.lista.application.exception.BusinessException;
 import com.tcg.lista.application.exception.EntityNotFoundException;
-import com.tcg.lista.domain.enitty.amizade.Amizade;
-import com.tcg.lista.domain.enitty.amizade.AmizadeStatus;
-import com.tcg.lista.domain.enitty.usuario.Usuario;
+import com.tcg.lista.domain.entity.amizade.Amizade;
+import com.tcg.lista.domain.entity.amizade.AmizadeStatus;
 import com.tcg.lista.infraestructure.mysql.repository.AmizadeRepository;
 import com.tcg.lista.infraestructure.mysql.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;

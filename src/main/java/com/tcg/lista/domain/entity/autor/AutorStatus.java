@@ -1,11 +1,11 @@
-package com.tcg.lista.domain.enitty.categoria;
+package com.tcg.lista.domain.entity.autor;
 
-public enum CategoriaStatus {
+public enum AutorStatus {
     INATIVO(0), ATIVO(1);
 
     private int value;
 
-    CategoriaStatus(int value){
+    AutorStatus(int value){
         this.value = value;
     }
 
@@ -13,8 +13,8 @@ public enum CategoriaStatus {
         return this.value;
     }
 
-    public static CategoriaStatus fromValue(int value){
-        for (CategoriaStatus status : CategoriaStatus.values()) {
+    public static AutorStatus fromValue(int value){
+        for (AutorStatus status : AutorStatus.values()) {
             if (status.getValue() == value) {
                 return status;
             }
