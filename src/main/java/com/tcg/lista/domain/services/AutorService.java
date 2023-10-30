@@ -1,12 +1,14 @@
 package com.tcg.lista.domain.services;
 
 import com.tcg.lista.application.dto.AutorDTO;
+import com.tcg.lista.application.exception.BusinessException;
 import com.tcg.lista.application.exception.EntityNotFoundException;
 import com.tcg.lista.domain.enitty.autor.Autor;
 import com.tcg.lista.domain.enitty.autor.AutorStatus;
 import com.tcg.lista.domain.enitty.lista.Lista;
 import com.tcg.lista.domain.enitty.usuario.Usuario;
 import com.tcg.lista.infraestructure.mysql.repository.AutorRepository;
+import com.tcg.lista.infraestructure.mysql.repository.ListaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,28 +21,38 @@ public class AutorService {
     @Autowired
     private AutorRepository repo;
 
+    @Autowired
+    private ListaRepository listaRepository;
+
+    @Autowired
+    private UsuarioService usuarioService;
+
     public AutorDTO create(AutorDTO autorDTO){
         return toDTO(repo.save(toEntity(autorDTO)));
     }
 
     public AutorDTO update(Long id, AutorDTO autorDTO){
 
-        var autor = repo.getReferenceById(id);
+        var autor = getById(id);
 
-        autor.setUsuario(new Usuario(autorDTO.usuarioId()));
-        autor.setLista(new Lista(autorDTO.listaId()));
+        autor.setUsuario(usuarioService.getUsuario(autorDTO.usuarioId()));
+        autor.setLista(listaRepository.findById(autorDTO.listaId()).orElseThrow(() -> new EntityNotFoundException("Lista")));
         autor.setStatus(autorDTO.status().getValue());
 
         return toDTO(repo.save(autor));
     }
 
-    public AutorDTO getById(Long id){
-        return toDTO(repo.findById(id).orElseThrow(() -> new EntityNotFoundException("Autor")));
+    public Autor getById(Long id){
+        return repo.findById(id).orElseThrow(() -> new EntityNotFoundException("Autor"));
+    }
+
+    public AutorDTO getAutorDTOById(Long id){
+        return toDTO(getById(id));
     }
 
     public List<AutorDTO> getAllAutoresByListaId(Long id){
         return repo.findAutorByListaId(id).
-                orElseThrow(() -> new RuntimeException("Autor não encontrado."))
+                orElseThrow(() -> new BusinessException("A Lista não possui Autores."))
                 .stream().map(this::toDTO).collect(Collectors.toList());
     }
 
@@ -61,8 +73,8 @@ public class AutorService {
     public Autor toEntity(AutorDTO autorDTO){
         return new Autor(
                 autorDTO.id(),
-                new Usuario(autorDTO.usuarioId()),
-                new Lista(autorDTO.listaId()),
+                usuarioService.getUsuario(autorDTO.usuarioId()),
+                listaRepository.findById(autorDTO.listaId()).orElseThrow(() -> new EntityNotFoundException("Lista")),
                 autorDTO.status() == null ? AutorStatus.ATIVO.getValue() : autorDTO.status().getValue()
         );
     }

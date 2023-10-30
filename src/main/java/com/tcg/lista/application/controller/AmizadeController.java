@@ -23,7 +23,7 @@ public class AmizadeController {
 
     @GetMapping("/{id}")
     public AmizadeReadDTO getAmizade(@PathVariable Long id) {
-        return amizadeService.getAmizade(id);
+        return amizadeService.getAmizadeDTO(id);
     }
 
     @Transactional

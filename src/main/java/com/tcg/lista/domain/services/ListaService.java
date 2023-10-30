@@ -2,6 +2,7 @@ package com.tcg.lista.domain.services;
 
 import com.tcg.lista.application.dto.ItemDTO;
 import com.tcg.lista.application.dto.ListaDTO;
+import com.tcg.lista.application.exception.BusinessException;
 import com.tcg.lista.application.exception.EntityNotFoundException;
 import com.tcg.lista.domain.enitty.lista.Lista;
 import com.tcg.lista.domain.enitty.usuario.Usuario;
@@ -25,14 +26,21 @@ public class ListaService {
     @Autowired
     private AutorService autorService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     public List<ListaDTO> getAllListasByUser(Long id) {
         return listaRepository.findListaByUsuarioId(id)
-                .orElseThrow(()-> new RuntimeException("Usuário não possui Listas."))
+                .orElseThrow(()-> new BusinessException("Usuário não possui Listas."))
                 .stream().map(this::toDTO).collect(Collectors.toList());
     }
 
-    public ListaDTO getListaById(Long id) {
-        return toDTO(listaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Lista")));
+    public ListaDTO getListaDTOById(Long id) {
+        return toDTO(getListaById(id));
+    }
+
+    public Lista getListaById(Long id) {
+        return listaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Lista"));
     }
 
     public ListaDTO createLista(ListaDTO listaDTO) {
@@ -45,10 +53,10 @@ public class ListaService {
 
     public ListaDTO updateLista(Long id, ListaDTO listaDTO) {
 
-        var lista = listaRepository.getReferenceById(id);
+        var lista = getListaById(id);
 
         lista.setNome(listaDTO.nome());
-        lista.setUsuario(new Usuario(listaDTO.usuarioId()));
+        lista.setUsuario(usuarioService.getUsuario(listaDTO.usuarioId()));
         lista.setDataCriacao(listaDTO.dataCriacao());
         lista.setDataValidade(listaDTO.dataValidade());
         lista.setConcluida(listaDTO.isConcluida());
@@ -64,12 +72,8 @@ public class ListaService {
         listaRepository.deleteById(id);
     }
 
-    public ItemDTO addItem(Long listaId, ItemDTO itemDTO) {
-
-        var lista = listaRepository.getReferenceById(listaId);
-
-        return itemService.addItem(lista, itemDTO);
-
+    public ItemDTO addItem(ItemDTO itemDTO) {
+        return itemService.addItem(getListaById(itemDTO.listaId()), itemDTO);
     }
 
     public ItemDTO updateItem(Long id, ItemDTO itemDTO) {
@@ -92,7 +96,7 @@ public class ListaService {
 
         var lista = new Lista(
                 listaDTO.id(),
-                new Usuario(listaDTO.usuarioId()),
+                usuarioService.getUsuario(listaDTO.usuarioId()),
                 listaDTO.nome(),
                 listaDTO.dataCriacao(),
                 listaDTO.dataValidade(),

@@ -22,7 +22,7 @@ public class NotificacaoController {
 
     @GetMapping("/{id}")
     public NotificacaoDTO getNotificacao(@PathVariable Long id) {
-        return notificacaoService.getNotificacao(id);
+        return notificacaoService.getNotificacaoDTO(id);
     }
 
     @Transactional
@@ -32,9 +32,9 @@ public class NotificacaoController {
     }
 
     @Transactional
-    @PutMapping("/{id}")
-    public NotificacaoDTO updateNotificacao(@PathVariable Long id, @RequestBody NotificacaoDTO notificacaoDTO) {
-        return notificacaoService.updateNotificacao(id, notificacaoDTO);
+    @PutMapping()
+    public NotificacaoDTO updateNotificacao(@RequestBody NotificacaoDTO notificacaoDTO) {
+        return notificacaoService.updateNotificacao(notificacaoDTO);
     }
 
     @Transactional

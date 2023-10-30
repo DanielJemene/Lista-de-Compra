@@ -6,6 +6,7 @@ import com.tcg.lista.domain.enitty.categoria.Categoria;
 import com.tcg.lista.domain.enitty.categoria.CategoriaStatus;
 import com.tcg.lista.domain.enitty.usuario.Usuario;
 import com.tcg.lista.infraestructure.mysql.repository.CategoriaRepository;
+import com.tcg.lista.infraestructure.mysql.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,9 @@ public class CategoriaService {
 
     @Autowired
     private CategoriaRepository categoriaRepository;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     public List<CategoriaDTO> getAllCategorias() {
         return categoriaRepository.findAll().stream().map(this::toDTO).collect(Collectors.toList());
@@ -35,7 +39,7 @@ public class CategoriaService {
 
             var categoria = categoriaRepository.getReferenceById(id);
             categoria.setNome(categoriaDTO.nome());
-            categoria.setUsuario(new Usuario(categoriaDTO.usuarioId()));
+            categoria.setUsuario(usuarioService.getUsuario(categoriaDTO.usuarioId()));
             categoria.setStatus(categoriaDTO.status().getValue());
 
             return toDTO(categoriaRepository.save(categoria));
@@ -58,7 +62,7 @@ public class CategoriaService {
 
     private Categoria toEntity(CategoriaDTO categoriaDTO){
         return new Categoria(categoriaDTO.id(),
-                new Usuario(categoriaDTO.usuarioId()),
+                usuarioService.getUsuario(categoriaDTO.usuarioId()),
                 categoriaDTO.nome(),
                 categoriaDTO.status().getValue());
     }

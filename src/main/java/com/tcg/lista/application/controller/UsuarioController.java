@@ -23,7 +23,7 @@ public class UsuarioController {
 
     @GetMapping("/{id}")
     public UsuarioReadDTO getUsuario(@PathVariable Long id) {
-        return usuarioService.getUsuario(id);
+        return usuarioService.getUsuarioDTO(id);
     }
 
     @Transactional

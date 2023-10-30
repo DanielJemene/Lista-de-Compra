@@ -2,6 +2,7 @@ package com.tcg.lista.domain.services;
 
 import com.tcg.lista.application.dto.UsuarioReadDTO;
 import com.tcg.lista.application.dto.UsuarioSaveDTO;
+import com.tcg.lista.application.exception.BusinessException;
 import com.tcg.lista.application.exception.EntityNotFoundException;
 import com.tcg.lista.domain.enitty.usuario.Usuario;
 import com.tcg.lista.domain.enitty.usuario.UsuarioStatus;
@@ -9,6 +10,9 @@ import com.tcg.lista.infraestructure.mysql.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.TemporalUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,16 +29,29 @@ public class UsuarioService {
         return usuarioRepository.findAll().stream().map(this::toDTO).collect(Collectors.toList());
     }
 
-    public UsuarioReadDTO getUsuario(Long id) {
-        return toDTO(usuarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuário")));
+    public Usuario getUsuario(Long id) {
+        return usuarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuário"));
+    }
+
+    public UsuarioReadDTO getUsuarioDTO(Long id) {
+        return toDTO(getUsuario(id));
     }
 
     public UsuarioReadDTO createUsuario(UsuarioSaveDTO usuarioDTO) {
+
+        isIdadeValida(usuarioDTO.dataNascimento());
 
         var usuario = toEntity(usuarioDTO);
         usuario.setStatus(UsuarioStatus.ATIVO.getValue());
 
         return toDTO(usuarioRepository.save(usuario));
+    }
+
+    private void isIdadeValida(LocalDate dtNascimento){
+
+        if(Period.between(dtNascimento, LocalDate.now()).getYears() < 18) {
+            throw new BusinessException("Idade não permitida, Usuário menor que 18 anos.");
+        }
     }
 
     public void deletarUsuario(Long id) {
@@ -59,6 +76,7 @@ public class UsuarioService {
         var usuario = new Usuario();
 
         usuario.setNome(usuarioDTO.nome());
+        usuario.setDataNascimento(usuarioDTO.dataNascimento());
         usuario.setEmail(usuarioDTO.email());
         usuario.setCpf(usuarioDTO.cpf());
         usuario.setSenha(usuarioDTO.senha());
@@ -75,6 +93,7 @@ public class UsuarioService {
         return new UsuarioReadDTO(
                 usuario.getId(),
                 usuario.getNome(),
+                usuario.getDataNascimento(),
                 usuario.getEmail(),
                 usuario.getCpf(),
                 UsuarioStatus.fromValue(usuario.getStatus()),

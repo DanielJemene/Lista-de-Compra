@@ -21,7 +21,7 @@ public class AutorController {
 
     @GetMapping("/{id}")
     public AutorDTO getById(@PathVariable Long id){
-        return service.getById(id);
+        return service.getAutorDTOById(id);
     }
 
     @GetMapping("/bylista/{id}")

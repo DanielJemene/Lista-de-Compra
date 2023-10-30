@@ -2,11 +2,13 @@ package com.tcg.lista.domain.services;
 
 import com.tcg.lista.application.dto.AmizadeReadDTO;
 import com.tcg.lista.application.dto.AmizadeSaveDTO;
+import com.tcg.lista.application.exception.BusinessException;
 import com.tcg.lista.application.exception.EntityNotFoundException;
 import com.tcg.lista.domain.enitty.amizade.Amizade;
 import com.tcg.lista.domain.enitty.amizade.AmizadeStatus;
 import com.tcg.lista.domain.enitty.usuario.Usuario;
 import com.tcg.lista.infraestructure.mysql.repository.AmizadeRepository;
+import com.tcg.lista.infraestructure.mysql.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +22,20 @@ public class AmizadeService {
     @Autowired
     private AmizadeRepository amizadeRepository;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     public List<AmizadeReadDTO> getAmizadesByUserId(Long id) {
-        return amizadeRepository.findAmizadeByUsuarioId(id).get().stream().map(this::toDTO).collect(Collectors.toList());
+        return amizadeRepository.findAmizadeByUsuarioId(id).get()
+                .stream().map(this::toDTO).collect(Collectors.toList());
     }
 
-    public AmizadeReadDTO getAmizade(Long id) {
-        return toDTO(amizadeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Amizade")));
+    public AmizadeReadDTO getAmizadeDTO(Long id) {
+        return toDTO(getAmizade(id));
+    }
+
+    public Amizade getAmizade(Long id) {
+        return amizadeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Amizade"));
     }
 
     public AmizadeReadDTO createAmizade(AmizadeSaveDTO amizadeDTO) {
@@ -40,10 +50,10 @@ public class AmizadeService {
 
     public AmizadeReadDTO updateAmizade(Long id, AmizadeSaveDTO amizadeDTO) {
 
-        var amizade = amizadeRepository.getReferenceById(id);
+        var amizade = getAmizade(id);
 
-        amizade.setUsuario(new Usuario(amizadeDTO.usuarioId()));
-        amizade.setAmigo(new Usuario(amizadeDTO.amigoId()));
+        amizade.setUsuario(usuarioRepository.findById(amizadeDTO.amigoId()).orElseThrow(() -> new EntityNotFoundException("Amigo")));
+        amizade.setAmigo(usuarioRepository.findById(amizadeDTO.amigoId()).orElseThrow(() -> new EntityNotFoundException("Amigo")));
         amizade.setStatus(amizadeDTO.status().getValue());
 
         if (AmizadeStatus.INATIVO.getValue() == amizade.getStatus()
@@ -59,8 +69,9 @@ public class AmizadeService {
     public Amizade toEntity(AmizadeSaveDTO amizadeDTO){
 
         var amizade = new Amizade();
-        amizade.setUsuario(new Usuario(amizadeDTO.usuarioId()));
-        amizade.setAmigo(new Usuario(amizadeDTO.amigoId()));
+
+        amizade.setUsuario(usuarioRepository.findById(amizadeDTO.usuarioId()).orElseThrow(() -> new EntityNotFoundException("Usuário")));
+        amizade.setAmigo(usuarioRepository.findById(amizadeDTO.amigoId()).orElseThrow(() -> new EntityNotFoundException("Amigo")));
 
         if (amizadeDTO.status() != null) {
             amizade.setStatus(amizadeDTO.status().getValue());

@@ -23,7 +23,7 @@ public class ListaController {
 
     @GetMapping("/{id}")
     public ListaDTO getLista(@PathVariable Long id) {
-        return listaService.getListaById(id);
+        return listaService.getListaDTOById(id);
     }
 
     @Transactional
@@ -45,9 +45,9 @@ public class ListaController {
     }
 
     @Transactional
-    @PostMapping("/{id}/itens")
-    public ItemDTO addItem(@PathVariable Long id, @RequestBody ItemDTO itemDTO) {
-        return listaService.addItem(id, itemDTO);
+    @PostMapping("/itens")
+    public ItemDTO addItem(@RequestBody ItemDTO itemDTO) {
+        return listaService.addItem(itemDTO);
     }
 
     @Transactional
@@ -61,7 +61,7 @@ public class ListaController {
         return listaService.getItemById(id);
     }
 
-    @GetMapping("/{id}/itens")
+    @GetMapping("/itens/bylista/{id}")
     public List<ItemDTO> getAllItensByLista(@PathVariable Long id) {
         return listaService.getItemByListaId(id);
     }

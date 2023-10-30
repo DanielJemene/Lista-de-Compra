@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -20,6 +21,9 @@ public class Usuario {
 
     @Column
     private String nome;
+
+    @Column
+    private LocalDate dataNascimento;
 
     @Column
     private String email;

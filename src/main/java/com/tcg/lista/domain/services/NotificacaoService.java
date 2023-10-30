@@ -1,6 +1,7 @@
 package com.tcg.lista.domain.services;
 
 import com.tcg.lista.application.dto.NotificacaoDTO;
+import com.tcg.lista.application.exception.BusinessException;
 import com.tcg.lista.application.exception.EntityNotFoundException;
 import com.tcg.lista.domain.enitty.notificacao.Notificacao;
 import com.tcg.lista.domain.enitty.notificacao.NotificacaoStatus;
@@ -19,24 +20,31 @@ public class NotificacaoService {
     @Autowired
     private NotificacaoRepository notificacaoRepository;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     public List<NotificacaoDTO> getAllNotificacoesByDestinatarioId(Long id) {
 
         return notificacaoRepository.findNotificacaoByDestinatarioId(id)
-                .orElseThrow(()-> new RuntimeException("Usuário não possui Notificações."))
+                .orElseThrow(()-> new BusinessException("Usuário não possui Notificações."))
                 .stream().map(this::toDTO).collect(Collectors.toList());
     }
 
-    public NotificacaoDTO getNotificacao(Long id) {
-        return toDTO(notificacaoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Notificação")));
+    public Notificacao getNotificacao(Long id) {
+        return notificacaoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Notificação"));
+    }
+
+    public NotificacaoDTO getNotificacaoDTO(Long id) {
+        return toDTO(getNotificacao(id));
     }
 
     public NotificacaoDTO createNotificacao(NotificacaoDTO notificacaoDTO) {
         return toDTO(notificacaoRepository.save(toEntity(notificacaoDTO)));
     }
 
-    public NotificacaoDTO updateNotificacao(Long id, NotificacaoDTO notificacaoDTO) {
+    public NotificacaoDTO updateNotificacao(NotificacaoDTO notificacaoDTO) {
 
-        var notificacao = notificacaoRepository.getReferenceById(id);
+        var notificacao = getNotificacao(notificacaoDTO.id());
 
         notificacao.setMensagem(notificacaoDTO.mensagem());
         notificacao.setTipo(notificacaoDTO.tipo().getValue());
@@ -64,8 +72,8 @@ public class NotificacaoService {
 
         return new Notificacao(
                 notificacaoDTO.id(),
-                new Usuario(notificacaoDTO.emissorId()),
-                new Usuario(notificacaoDTO.destinatarioId()),
+                usuarioService.getUsuario(notificacaoDTO.emissorId()),
+                usuarioService.getUsuario(notificacaoDTO.destinatarioId()),
                 notificacaoDTO.mensagem(),
                 notificacaoDTO.tipo().getValue(),
                 (notificacaoDTO.status() == null ?
