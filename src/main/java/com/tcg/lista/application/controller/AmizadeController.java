@@ -4,6 +4,7 @@ import com.tcg.lista.application.dto.AmizadeReadDTO;
 import com.tcg.lista.application.dto.AmizadeSaveDTO;
 import com.tcg.lista.domain.service.AmizadeService;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,13 +29,13 @@ public class AmizadeController {
 
     @Transactional
     @PostMapping
-    public AmizadeReadDTO createAmizade(@RequestBody AmizadeSaveDTO amizadeDTO) {
+    public AmizadeReadDTO createAmizade(@RequestBody @Valid AmizadeSaveDTO amizadeDTO) {
         return amizadeService.createAmizade(amizadeDTO);
     }
 
     @Transactional
     @PutMapping("/{id}")
-    public AmizadeReadDTO updateAmizade(@PathVariable Long id, @RequestBody AmizadeSaveDTO amizadeDTO) {
+    public AmizadeReadDTO updateAmizade(@PathVariable Long id, @RequestBody @Valid AmizadeSaveDTO amizadeDTO) {
         return amizadeService.updateAmizade(id, amizadeDTO);
     }
 

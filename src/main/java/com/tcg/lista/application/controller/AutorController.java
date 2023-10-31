@@ -2,6 +2,7 @@ package com.tcg.lista.application.controller;
 
 import com.tcg.lista.application.dto.AutorDTO;
 import com.tcg.lista.domain.service.AutorService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ public class AutorController {
     private AutorService service;
 
     @PostMapping
-    public AutorDTO create(@RequestBody AutorDTO autorDTO){
+    public AutorDTO create(@RequestBody @Valid AutorDTO autorDTO){
         return service.create(autorDTO);
     }
 
@@ -30,7 +31,7 @@ public class AutorController {
     }
 
     @PutMapping("/{id}")
-    public AutorDTO update(@PathVariable Long id, @RequestBody AutorDTO autorDTO){
+    public AutorDTO update(@PathVariable Long id, @RequestBody @Valid AutorDTO autorDTO){
         return service.update(id, autorDTO);
     }
 

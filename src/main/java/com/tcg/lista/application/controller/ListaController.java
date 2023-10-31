@@ -4,6 +4,7 @@ import com.tcg.lista.application.dto.ItemDTO;
 import com.tcg.lista.application.dto.ListaDTO;
 import com.tcg.lista.domain.service.ListaService;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,13 +29,13 @@ public class ListaController {
 
     @Transactional
     @PostMapping
-    public ListaDTO createLista(@RequestBody ListaDTO listaDTO) {
+    public ListaDTO createLista(@RequestBody @Valid ListaDTO listaDTO) {
         return listaService.createLista(listaDTO);
     }
 
     @Transactional
     @PutMapping("/{id}")
-    public ListaDTO updateLista(@PathVariable Long id, @RequestBody ListaDTO listaDTO) {
+    public ListaDTO updateLista(@PathVariable Long id, @RequestBody @Valid ListaDTO listaDTO) {
         return listaService.updateLista(id, listaDTO);
     }
 
@@ -46,13 +47,13 @@ public class ListaController {
 
     @Transactional
     @PostMapping("/itens")
-    public ItemDTO addItem(@RequestBody ItemDTO itemDTO) {
+    public ItemDTO addItem(@RequestBody @Valid ItemDTO itemDTO) {
         return listaService.addItem(itemDTO);
     }
 
     @Transactional
     @PutMapping("/itens/{id}")
-    public ItemDTO updateItem(@PathVariable Long id, @RequestBody ItemDTO itemDTO) {
+    public ItemDTO updateItem(@PathVariable Long id, @RequestBody @Valid ItemDTO itemDTO) {
         return listaService.updateItem(id, itemDTO);
     }
 

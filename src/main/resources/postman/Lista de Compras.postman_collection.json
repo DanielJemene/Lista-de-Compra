@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "3ff760a3-eed9-46ed-bbf8-af8ca2f54e96",
+		"_postman_id": "6a1b2198-2895-4eac-818f-4951dfd5066c",
 		"name": "LIsta de Compras",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "17260916",
-		"_collection_link": "https://crimson-shuttle-91101.postman.co/workspace/Lista-de-Compras~fb21d0ab-461e-4fc6-bb77-5926f32e3b39/collection/17260916-3ff760a3-eed9-46ed-bbf8-af8ca2f54e96?action=share&source=collection_link&creator=17260916"
+		"_exporter_id": "843251"
 	},
 	"item": [
 		{
@@ -17,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Pedro\",\r\n    \"dataNascimento\": \"2001-12-28\",\r\n    \"email\": \"email@email.com\",\r\n    \"cpf\": \"12312312312\",\r\n    \"senha\": \"123\"\r\n}",
+							"raw": "{\r\n    \"nome\": \"Pedro\",\r\n    \"dataNascimento\": \"2001-12-28\",\r\n    \"email\": \"email@email.com\",\r\n    \"cpf\": \"67754351005\",\r\n    \"senha\": \"123\",\r\n    \"status\": 1\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -95,7 +94,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Joaquim\",\r\n    \"email\": \"email@email.com\",\r\n    \"cpf\": \"12312312312\",\r\n    \"senha\": \"123\",\r\n    \"status\": 1\r\n}",
+							"raw": "{\r\n    \"nome\": \"Joaquim\",\r\n    \"email\": \"email@email.com\",\r\n    \"cpf\": \"67754351005\",\r\n    \"senha\": \"123\",\r\n    \"status\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -149,7 +148,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"usuarioId\": 1,\r\n    \"amigoId\": 3,\r\n    \"status\": 1\r\n}",
+							"raw": "{\r\n    \"usuarioId\": 1,\r\n    \"amigoId\": 3,\r\n    \"status\": 0\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -229,7 +228,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"usuarioId\": 7,\r\n    \"amigoId\": 8,\r\n    \"status\": 1\r\n}",
+							"raw": "{\r\n    \"usuarioId\": 1,\r\n    \"amigoId\": 1,\r\n    \"status\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -361,7 +360,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"usuarioId\": 7,\r\n    \"nome\": \"Eletro\",\r\n    \"status\": 1\r\n}",
+							"raw": "{\r\n    \"usuarioId\": 1,\r\n    \"nome\": \"Eletro\",\r\n    \"status\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -549,7 +548,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"usuarioId\": 1,\r\n    \"listaId\": 1,\r\n    \"categoriaId\": 1,\r\n    \"nome\": \"Sabão\",\r\n    \"quantidade\": 1,\r\n    \"preco\": 5,\r\n    \"descricao\": \"Para cabelo ondulado\"\r\n}",
+							"raw": "{\r\n    \"usuarioId\": 2,\r\n    \"listaId\": 1,\r\n    \"categoriaId\": 1,\r\n    \"nome\": \"Sabão\",\r\n    \"quantidade\": 1,\r\n    \"preco\": 5,\r\n    \"descricao\": \"Para cabelo ondulado\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -577,7 +576,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/listas/1/itens",
+							"raw": "http://localhost:8080/listas/itens/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -585,8 +584,8 @@
 							"port": "8080",
 							"path": [
 								"listas",
-								"1",
-								"itens"
+								"itens",
+								"2"
 							]
 						}
 					},
@@ -598,7 +597,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/listas/itens/2",
+							"raw": "http://localhost:8080/listas/itens/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -607,7 +606,7 @@
 							"path": [
 								"listas",
 								"itens",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -631,7 +630,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"usuarioId\": 1,\r\n    \"listaId\": 1,\r\n    \"nome\": \"Shampoo Atualizado\",\r\n    \"quantidade\": 2,\r\n    \"preco\": 3.5,\r\n    \"descricao\": \"Para cabelo ondulado Atualizado\",\r\n    \"isConcluido\": true\r\n}",
+							"raw": "{\r\n    \"usuarioId\": 1,\r\n    \"categoriaId\": 1,\r\n    \"listaId\": 1,\r\n    \"nome\": \"Shampoo Atualizado\",\r\n    \"quantidade\": 2,\r\n    \"preco\": 3.5,\r\n    \"descricao\": \"Para cabelo ondulado Atualizado\",\r\n    \"isConcluido\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -660,7 +659,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/listas/itens/5",
+							"raw": "http://localhost:8080/listas/itens/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -669,7 +668,7 @@
 							"path": [
 								"listas",
 								"itens",
-								"5"
+								"1"
 							]
 						}
 					},
@@ -687,7 +686,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"usuarioId\": 3,\r\n    \"listaId\": 3\r\n}",
+							"raw": "{\r\n    \"usuarioId\": 3,\r\n    \"listaId\": 1,\r\n    \"status\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -715,7 +714,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/listas/autores/bylista/3",
+							"raw": "http://localhost:8080/listas/autores/bylista/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -725,7 +724,7 @@
 								"listas",
 								"autores",
 								"bylista",
-								"3"
+								"1"
 							]
 						}
 					},
@@ -737,7 +736,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/listas/autores/2",
+							"raw": "http://localhost:8080/listas/autores/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -746,7 +745,7 @@
 							"path": [
 								"listas",
 								"autores",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -770,7 +769,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"usuarioId\": 3,\r\n    \"listaId\": 3,\r\n    \"status\": 0\r\n}",
+							"raw": "{\r\n    \"usuarioId\": 1,\r\n    \"listaId\": 1,\r\n    \"status\": 0\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -778,7 +777,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/listas/autores/2",
+							"raw": "http://localhost:8080/listas/autores/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -787,7 +786,7 @@
 							"path": [
 								"listas",
 								"autores",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -826,7 +825,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"emissorId\": 1,\r\n    \"destinatarioId\": 2,\r\n    \"mensagem\" : \"Deseja adicionar o usuário João como seu amigo?\",\r\n    \"tipo\": 0\r\n}",
+							"raw": "{\r\n    \"emissorId\": 1,\r\n    \"destinatarioId\": 2,\r\n    \"mensagem\" : \"Deseja adicionar o usuário João como seu amigo?\",\r\n    \"tipo\": 0,\r\n    \"status\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -906,7 +905,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1,\r\n    \"mensagem\" : \"Deseja adicionar o usuário Pedro como seu amigo?\",\r\n    \"tipo\": 0,\r\n    \"status\": 0\r\n}",
+							"raw": "{\r\n    \"id\": 4,\r\n    \"emissorId\": 1,\r\n    \"destinatarioId\": 2,\r\n    \"mensagem\" : \"Deseja adicionar o usuário Pedro como seu amigo?\",\r\n    \"tipo\": 0,\r\n    \"status\": 0\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
