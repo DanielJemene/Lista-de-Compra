@@ -5,7 +5,6 @@ import com.tcg.lista.application.dto.ListaDTO;
 import com.tcg.lista.application.exception.BusinessException;
 import com.tcg.lista.application.exception.EntityNotFoundException;
 import com.tcg.lista.domain.enitty.lista.Lista;
-import com.tcg.lista.domain.enitty.usuario.Usuario;
 import com.tcg.lista.infraestructure.mysql.repository.ListaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,11 +72,13 @@ public class ListaService {
     }
 
     public ItemDTO addItem(ItemDTO itemDTO) {
+
         return itemService.addItem(getListaById(itemDTO.listaId()), itemDTO);
     }
 
     public ItemDTO updateItem(Long id, ItemDTO itemDTO) {
-        return itemService.updateItem(id, itemDTO);
+        Lista lista = listaRepository.getReferenceById(itemDTO.listaId());
+        return itemService.updateItem(id, itemDTO, lista);
     }
 
     public ItemDTO getItemById(Long id) {
@@ -91,6 +92,7 @@ public class ListaService {
     public void deleteItem(Long id) {
         itemService.deleteItem(id);
     }
+
     private Lista toEntity(ListaDTO listaDTO){
 
 

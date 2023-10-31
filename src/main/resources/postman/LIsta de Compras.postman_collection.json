@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "6fced0d8-4140-4762-93f1-71c6cd5e4f04",
+		"_postman_id": "3ff760a3-eed9-46ed-bbf8-af8ca2f54e96",
 		"name": "LIsta de Compras",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "23155843"
+		"_exporter_id": "17260916",
+		"_collection_link": "https://crimson-shuttle-91101.postman.co/workspace/Lista-de-Compras~fb21d0ab-461e-4fc6-bb77-5926f32e3b39/collection/17260916-3ff760a3-eed9-46ed-bbf8-af8ca2f54e96?action=share&source=collection_link&creator=17260916"
 	},
 	"item": [
 		{
@@ -16,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Pedro\",\r\n    \"email\": \"email@email.com\",\r\n    \"cpf\": \"12312312312\",\r\n    \"senha\": \"123\"\r\n}",
+							"raw": "{\r\n    \"nome\": \"Pedro\",\r\n    \"dataNascimento\":\"2003-01-25\",\r\n    \"email\": \"email@email.com\",\r\n    \"cpf\": \"12312312312\",\r\n    \"senha\": \"123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -548,7 +549,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"usuarioId\": 1,\r\n    \"listaId\": 3,\r\n    \"categoriaId\": 2,\r\n    \"nome\": \"Condicionador\",\r\n    \"quantidade\": 1,\r\n    \"preco\": 5,\r\n    \"descricao\": \"Para cabelo ondulado\"\r\n}",
+							"raw": "{\r\n    \"usuarioId\": 1,\r\n    \"listaId\": 1,\r\n    \"categoriaId\": 1,\r\n    \"nome\": \"Sabão\",\r\n    \"quantidade\": 1,\r\n    \"preco\": 5,\r\n    \"descricao\": \"Para cabelo ondulado\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -556,7 +557,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/listas/3/itens",
+							"raw": "http://localhost:8080/listas/itens",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -564,7 +565,6 @@
 							"port": "8080",
 							"path": [
 								"listas",
-								"3",
 								"itens"
 							]
 						}
@@ -598,7 +598,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/listas/itens/8",
+							"raw": "http://localhost:8080/listas/itens/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -607,7 +607,7 @@
 							"path": [
 								"listas",
 								"itens",
-								"8"
+								"2"
 							]
 						}
 					},
@@ -631,7 +631,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"usuarioId\": 6,\r\n    \"listaId\": 1,\r\n    \"nome\": \"Shampoo Atualizado\",\r\n    \"quantidade\": 2,\r\n    \"preco\": 3.5,\r\n    \"descricao\": \"Para cabelo ondulado Atualizado\"\r\n}",
+							"raw": "{\r\n    \"usuarioId\": 1,\r\n    \"listaId\": 1,\r\n    \"nome\": \"Shampoo Atualizado\",\r\n    \"quantidade\": 2,\r\n    \"preco\": 3.5,\r\n    \"descricao\": \"Para cabelo ondulado Atualizado\",\r\n    \"isConcluido\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -639,7 +639,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/listas/itens/6",
+							"raw": "http://localhost:8080/listas/itens/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -648,7 +648,7 @@
 							"path": [
 								"listas",
 								"itens",
-								"6"
+								"3"
 							]
 						}
 					},

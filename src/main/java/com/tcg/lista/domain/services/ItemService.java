@@ -20,15 +20,15 @@ public class ItemService {
     @Autowired
     private ItemRepository repo;
 
-    public ItemDTO addItem(Lista lista, ItemDTO itemDTO){
 
+    public ItemDTO addItem(Lista lista, ItemDTO itemDTO){
         var item = toEntity(itemDTO);
         item.setLista(lista);
 
         return toDTO(repo.save(item));
     }
 
-    public ItemDTO updateItem(Long id, ItemDTO itemDTO){
+    public ItemDTO updateItem(Long id, ItemDTO itemDTO, Lista lista){
 
         var item = repo.getReferenceById(id);
 
@@ -43,11 +43,23 @@ public class ItemService {
             item.setDataConclusao(LocalDateTime.now());
         }
 
-        return toDTO(repo.save(item));
+        Item itemAtualizado = repo.save(item);
+        this.isTodosItensFinalizados(lista);
+
+        return toDTO(itemAtualizado);
     }
 
     public ItemDTO getItemById(Long id){
         return toDTO(repo.findById(id).orElseThrow(() -> new EntityNotFoundException("Item")));
+    }
+
+    public boolean isTodosItensFinalizados(Lista lista) {
+        if (lista.getItens().stream().allMatch(item -> item.isConcluido())){
+            lista.setConcluida(true);
+            return true;
+        }
+        lista.setConcluida(false);
+        return false;
     }
 
     public List<ItemDTO> getItemByListaId(Long id){
