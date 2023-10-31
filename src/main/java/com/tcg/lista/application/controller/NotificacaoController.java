@@ -3,6 +3,7 @@ package com.tcg.lista.application.controller;
 import com.tcg.lista.application.dto.NotificacaoDTO;
 import com.tcg.lista.domain.service.NotificacaoService;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,13 +28,13 @@ public class NotificacaoController {
 
     @Transactional
     @PostMapping
-    public NotificacaoDTO createNotificacao(@RequestBody NotificacaoDTO notificacaoDTO) {
+    public NotificacaoDTO createNotificacao(@RequestBody @Valid NotificacaoDTO notificacaoDTO) {
         return notificacaoService.createNotificacao(notificacaoDTO);
     }
 
     @Transactional
     @PutMapping()
-    public NotificacaoDTO updateNotificacao(@RequestBody NotificacaoDTO notificacaoDTO) {
+    public NotificacaoDTO updateNotificacao(@RequestBody @Valid NotificacaoDTO notificacaoDTO) {
         return notificacaoService.updateNotificacao(notificacaoDTO);
     }
 
