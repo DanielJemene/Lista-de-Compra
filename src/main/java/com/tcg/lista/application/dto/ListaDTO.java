@@ -22,6 +22,7 @@ public record ListaDTO(
         @NotNull(message = "A data de validade não pode ser nula")
         @Future(message = "A data de validade deve ser no futuro")
         LocalDateTime dataValidade,
+
         LocalDateTime dataConclusao,
         boolean isConcluida,
         List<ItemDTO> itens,
