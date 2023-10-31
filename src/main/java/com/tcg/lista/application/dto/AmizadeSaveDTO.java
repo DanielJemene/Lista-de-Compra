@@ -7,11 +7,11 @@ import jakarta.validation.constraints.NotNull;
 
 public record AmizadeSaveDTO (
 
-        @NotNull(message = "O usuarioId não pode ser nulo")
+        @NotNull(message = "O campo usuarioId não pode ser nulo")
         @Min(value = 1, message = "O usuarioId não pode ser zero ou negativo")
         Long usuarioId,
 
-        @NotNull(message = "O amigoId não pode ser nulo")
+        @NotNull(message = "O campo amigoId não pode ser nulo")
         @Min(value = 1, message = "O amigoId não pode ser zero ou negativo")
         Long amigoId,
 
