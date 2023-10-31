@@ -2,7 +2,7 @@ package com.tcg.lista.application.controller;
 
 import com.tcg.lista.application.dto.ItemDTO;
 import com.tcg.lista.application.dto.ListaDTO;
-import com.tcg.lista.domain.services.ListaService;
+import com.tcg.lista.domain.service.ListaService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

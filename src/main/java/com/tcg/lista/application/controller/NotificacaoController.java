@@ -1,7 +1,7 @@
 package com.tcg.lista.application.controller;
 
 import com.tcg.lista.application.dto.NotificacaoDTO;
-import com.tcg.lista.domain.services.NotificacaoService;
+import com.tcg.lista.domain.service.NotificacaoService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

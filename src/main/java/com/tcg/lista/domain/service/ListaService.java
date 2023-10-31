@@ -1,10 +1,10 @@
-package com.tcg.lista.domain.services;
+package com.tcg.lista.domain.service;
 
 import com.tcg.lista.application.dto.ItemDTO;
 import com.tcg.lista.application.dto.ListaDTO;
 import com.tcg.lista.application.exception.BusinessException;
 import com.tcg.lista.application.exception.EntityNotFoundException;
-import com.tcg.lista.domain.enitty.lista.Lista;
+import com.tcg.lista.domain.entity.lista.Lista;
 import com.tcg.lista.infraestructure.mysql.repository.ListaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

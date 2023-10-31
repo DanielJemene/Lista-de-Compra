@@ -1,6 +1,6 @@
-package com.tcg.lista.domain.enitty.amizade;
+package com.tcg.lista.domain.entity.amizade;
 
-import com.tcg.lista.domain.enitty.usuario.Usuario;
+import com.tcg.lista.domain.entity.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.Data;
 

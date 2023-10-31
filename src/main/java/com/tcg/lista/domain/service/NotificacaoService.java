@@ -1,12 +1,11 @@
-package com.tcg.lista.domain.services;
+package com.tcg.lista.domain.service;
 
 import com.tcg.lista.application.dto.NotificacaoDTO;
 import com.tcg.lista.application.exception.BusinessException;
 import com.tcg.lista.application.exception.EntityNotFoundException;
-import com.tcg.lista.domain.enitty.notificacao.Notificacao;
-import com.tcg.lista.domain.enitty.notificacao.NotificacaoStatus;
-import com.tcg.lista.domain.enitty.notificacao.TipoNotificacao;
-import com.tcg.lista.domain.enitty.usuario.Usuario;
+import com.tcg.lista.domain.entity.notificacao.Notificacao;
+import com.tcg.lista.domain.entity.notificacao.NotificacaoStatus;
+import com.tcg.lista.domain.entity.notificacao.TipoNotificacao;
 import com.tcg.lista.infraestructure.mysql.repository.NotificacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

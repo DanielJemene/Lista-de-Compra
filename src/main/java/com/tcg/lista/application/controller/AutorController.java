@@ -1,7 +1,7 @@
 package com.tcg.lista.application.controller;
 
 import com.tcg.lista.application.dto.AutorDTO;
-import com.tcg.lista.domain.services.AutorService;
+import com.tcg.lista.domain.service.AutorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

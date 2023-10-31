@@ -2,8 +2,9 @@ package com.tcg.lista.application.controller;
 
 import com.tcg.lista.application.dto.UsuarioReadDTO;
 import com.tcg.lista.application.dto.UsuarioSaveDTO;
-import com.tcg.lista.domain.services.UsuarioService;
+import com.tcg.lista.domain.service.UsuarioService;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class UsuarioController {
 
     @Transactional
     @PostMapping
-    public UsuarioReadDTO createUsuario(@RequestBody UsuarioSaveDTO usuarioDTO) {
+    public UsuarioReadDTO createUsuario(@Valid @RequestBody UsuarioSaveDTO usuarioDTO) {
         return usuarioService.createUsuario(usuarioDTO);
     }
 

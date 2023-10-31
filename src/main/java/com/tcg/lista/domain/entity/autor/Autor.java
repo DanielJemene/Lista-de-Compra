@@ -1,7 +1,7 @@
-package com.tcg.lista.domain.enitty.autor;
+package com.tcg.lista.domain.entity.autor;
 
-import com.tcg.lista.domain.enitty.lista.Lista;
-import com.tcg.lista.domain.enitty.usuario.Usuario;
+import com.tcg.lista.domain.entity.lista.Lista;
+import com.tcg.lista.domain.entity.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

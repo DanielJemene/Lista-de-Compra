@@ -1,6 +1,6 @@
 package com.tcg.lista.application.dto;
 
-import com.tcg.lista.domain.enitty.amizade.AmizadeStatus;
+import com.tcg.lista.domain.entity.amizade.AmizadeStatus;
 
 import java.time.LocalDate;
 

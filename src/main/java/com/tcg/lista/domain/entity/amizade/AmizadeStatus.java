@@ -1,4 +1,4 @@
-package com.tcg.lista.domain.enitty.amizade;
+package com.tcg.lista.domain.entity.amizade;
 
 public enum AmizadeStatus {
     INATIVO(0), ATIVO(1);
