@@ -14,6 +14,7 @@ public record UsuarioSaveDTO(
         @NotBlank(message = "O nome não pode estar vazio.")
         String nome,
 
+        @NotNull(message = "A data de nascimento não pode ser nula.")
         @Past(message = "A data de nascimento deve ser no passado")
         LocalDate dataNascimento,
 
